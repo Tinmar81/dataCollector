@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 //Import material components
-import {Grid, Typography} from "@material-ui/core";
+import {Grid, Typography, Paper} from "@material-ui/core";
 import {withStyles} from "@material-ui/core/styles";
 
 // Import material Lab compponents
@@ -13,6 +13,10 @@ import ClientForm from "./step3/ClientForm";
 const useStyles = theme => ({
     root_grid: {
         flexGrow: 1,
+    },
+    paper: {
+        marginTop: "20px",
+        padding: "10px 15px"
     }
 });
 
@@ -32,7 +36,7 @@ class RestaurantStep3 extends Component {
 
     render() {
         const {classes} = this.props;
-        const {name, description} = this.props.restaurantSelected
+        const {name, street, postal_code, city, phone} = this.props.restaurantSelected
         const dateBooking = this.formatDate(this.props.datetimeBooking)
         const timeArrival = this.formatTime(this.props.datetimeArrival)
         const timeDeparture= this.formatTime(this.props.datetimeDeparture)
@@ -45,21 +49,26 @@ class RestaurantStep3 extends Component {
                <ClientForm></ClientForm>
             </Grid>
             <Grid item  xs={12} md={4}>
-                <Alert severity="info">
+                <Alert severity="info" square>
                     <AlertTitle>Your Booking at {dateBooking}</AlertTitle>
-                    <Typography variant="subtitle1" gutterBottom>
+                    <Typography variant="subtitle1" gutterBottom >
                         from {timeArrival} to {timeDeparture}
                     </Typography>
+                </Alert>
+                <Paper variant="outlined" square className={classes.paper}>
                     <Typography variant="h5" gutterBottom>
                         {name}
                     </Typography>
-                    <Typography variant="body2" gutterBottom>
-                        {description}
+                    <Typography variant="body2" gutterBottom color={"textSecondary"}>
+                        {street}<br/>
+                        {postal_code} {city}
                     </Typography>
-                </Alert>
-
+                    <Typography variant="body1" gutterBottom color={"textSecondary"}>
+                        {phone}
+                    </Typography>
+                </Paper>
             </Grid>
-        </Grid>;
+        </Grid>
     }
 }
 

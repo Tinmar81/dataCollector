@@ -73,6 +73,9 @@ class DatasCollectorStepper extends Component {
     }
 
     handleDecrementStep() {
+        if(this.state.currentStep === 2) {
+            this.setState({restaurantSelected: false})
+        }
         if(this.state.currentStep > 1) {
             this.setState({currentStep: this.state.currentStep - 1});
         }
@@ -128,7 +131,7 @@ class DatasCollectorStepper extends Component {
                     </div>
                     {this.state.currentStep === 1 && this.state.restaurantsList ?
                         <RestaurantStep1 host={this.host}
-                                         restaurantsList={this.state.restaurantsList}
+                                         restaurants={this.state.restaurantsList}
                                          handleNextStep={this.handleIncrementStep}
                                          handleRestaurantSelected={this.handleRestaurantSelected}
                         >
