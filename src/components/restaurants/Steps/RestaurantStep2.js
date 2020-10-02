@@ -34,15 +34,20 @@ class RestaurantStep2 extends Component {
     }
 
     render() {
-        const {name, description} = this.props.restaurantSelected
+        console.log(this.props.restaurantSelected)
+        const {name, street, postal_code, city, phone} = this.props.restaurantSelected
 
         return <Grid container direction="row" justify="center" spacing={3}>
             <Grid item xs={4}>
                 <Typography variant="h5" gutterBottom>
                     {name}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
-                    {description}
+                <Typography variant="body1" gutterBottom color={"tertiary"}>
+                    {street}<br/>
+                    {postal_code} {city}
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom color={"tertiary"}>
+                    {phone}
                 </Typography>
             </Grid>
             <Grid item xs={4} t={2}>
